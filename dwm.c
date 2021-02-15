@@ -1283,6 +1283,14 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
 	wc.border_width = c->bw;
+
+    if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next) && selmon->lt[selmon->sellt]->arrange == tile)
+                        || (selmon->lt[selmon->sellt]->arrange == monocle && !c->isfloating)) && smartborder) {
+        c->oldw = c->w; c->w = wc.width = w + wc.border_width * 2;
+        c->oldh = c->h; c->h = wc.height = h + wc.border_width * 2;
+        wc.border_width = 0;
+    }
+
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
