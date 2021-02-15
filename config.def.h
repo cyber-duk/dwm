@@ -65,6 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[]  = { "dmenu_run", NULL };
 
 static Key keys[] = {
 	/* modifier                     chain key   key        function        argument */
@@ -101,6 +102,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             -1,         XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, -1,         XK_q,      quit,           {1} },
 	{ MODKEY,                       XK_a,       XK_t,      spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_a,       XK_p,      spawn,          {.v = dmenucmd } },
 };
 
 /* button definitions */
