@@ -90,6 +90,7 @@ static Key keys[] = {
 	TAGKEYS(                        -1,         XK_8,                      7)
 	TAGKEYS(                        -1,         XK_9,                      8)
 	{ MODKEY|ShiftMask,             -1,         XK_q,      quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask, -1,         XK_q,      quit,           {1} },
 	{ MODKEY,                       XK_a,       XK_t,      spawn,          {.v = termcmd } },
 };
 
