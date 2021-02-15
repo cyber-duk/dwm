@@ -844,6 +844,9 @@ drawbars(void)
 void
 enternotify(XEvent *e)
 {
+	if (!focusonclick)
+		return;
+
 	Client *c;
 	Monitor *m;
 	XCrossingEvent *ev = &e->xcrossing;
