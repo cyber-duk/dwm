@@ -15,14 +15,17 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
+
+static const char *colors[][4]      = {
+	/*               fg         bg         border     floatborder*/
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2, col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan,  col_gray2 },
+	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan,  col_gray1 },
 };
 
-static const unsigned int focusonclick = 1;		/* 1 means focus on click */
+static const unsigned int focusonclick   = 1;   /* 1 means focus on click */
+static const unsigned int fborderpx      = 3;   /* border pixel for floating windows */
+static const unsigned int floatbordercol = 1;   /* different border color for floating windows */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -118,6 +121,5 @@ static Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-
 };
 
