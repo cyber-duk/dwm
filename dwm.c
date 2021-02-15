@@ -167,6 +167,7 @@ static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
 static void focusin(XEvent *e);
+static void focusmaster(const Arg *arg);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
 static Atom getatomprop(Client *c, Atom prop);
@@ -814,6 +815,20 @@ focusin(XEvent *e)
 
 	if (selmon->sel && ev->window != selmon->sel->win)
 		setfocus(selmon->sel);
+}
+
+void
+focusmaster(const Arg *arg)
+{
+	Client *c;
+
+	if (selmon->nmaster < 1)
+		return;
+
+	c = nexttiled(selmon->clients);
+
+	if (c)
+		focus(c);
 }
 
 void
