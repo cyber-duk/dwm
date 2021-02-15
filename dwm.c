@@ -755,7 +755,7 @@ drawbars(void)
 void
 enternotify(XEvent *e)
 {
-	if (!focusonclick)
+	if (focusonclick)
 		return;
 
 	Client *c;
