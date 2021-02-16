@@ -147,6 +147,10 @@ static Key keys[] = {
 	{ MODKEY|MODOPT|ShiftMask,      -1,         XK_Right,  shifttag,       {.i = +1 } },       // send client to the next tag
 	{ MODKEY|ShiftMask,             -1,         XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             -1,         XK_k,      rotatestack,    {.i = -1 } },
+	{ MODKEY,                       XK_z,       XK_Left,   focusdir,       {.i = 0 } }, // left
+	{ MODKEY,                       XK_z,       XK_Right,  focusdir,       {.i = 1 } }, // right
+	{ MODKEY,                       XK_z,       XK_Up,     focusdir,       {.i = 2 } }, // up
+	{ MODKEY,                       XK_z,       XK_Down,   focusdir,       {.i = 3 } }, // down
 };
 
 /* button definitions */
