@@ -254,6 +254,7 @@ static void sigchld(int unused);
 static void sighup(int unused);
 static void sigterm(int unused);
 static void spawn(const Arg *arg);
+static void swapfocus(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
@@ -347,6 +348,7 @@ struct Pertag {
 	unsigned int sellts[LENGTH(tags) + 1]; /* selected layouts */
 	const Layout *ltidxs[LENGTH(tags) + 1][2]; /* matrix of tags and layouts indexes  */
 	int showbars[LENGTH(tags) + 1]; /* display bar for the current tag */
+	Client *prevclient[LENGTH(tags) + 1]; /* prev focused client */
 };
 
 /* compile-time check if all tags fit into an unsigned int bit array. */
@@ -2172,6 +2174,21 @@ spawn(const Arg *arg)
 }
 
 void
+swapfocus(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+	if (selmon->pertag->prevclient[selmon->pertag->curtag] != NULL
+			&& ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])) {
+		if (selmon->pertag->prevclient[selmon->pertag->curtag] == selmon->sel) {
+			selmon->pertag->prevclient[selmon->pertag->curtag] = selmon->sel->next;
+		}
+		focus(selmon->pertag->prevclient[selmon->pertag->curtag]);
+		restack(selmon->pertag->prevclient[selmon->pertag->curtag]->mon);
+	}
+}
+
+void
 tag(const Arg *arg)
 {
 	if (selmon->sel && arg->ui & TAGMASK) {
@@ -2322,6 +2339,7 @@ unfocus(Client *c, int setfocus)
 {
 	if (!c)
 		return;
+	selmon->pertag->prevclient[selmon->pertag->curtag] = c;
 	grabbuttons(c, 0);
 	if(c->isfloating && floatbordercol)
 		XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColFloat].pixel);

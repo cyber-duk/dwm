@@ -105,6 +105,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, -1,         XK_q,      quit,           {1} },
 	{ MODKEY|ShiftMask,             -1,         XK_f,      togglefullscr,  {0} },
 	{ MODKEY|ControlMask,           -1,         XK_space,  focusmaster,    {0} },
+	{ MODKEY,                       -1,         XK_s,      swapfocus,      {.i = -1 } },
 };
 
 /* button definitions */
