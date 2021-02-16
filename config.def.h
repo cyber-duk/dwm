@@ -29,6 +29,7 @@ static char *colors[][4]      = {
 static unsigned int focusonclick   = 1;   /* 1 means focus on click */
 static unsigned int fborderpx      = 3;   /* border pixel for floating windows */
 static unsigned int floatbordercol = 1;   /* different border color for floating windows */
+static unsigned int smartborder    = 1;   /* 0 means no border when monocle mode/one tiled window */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
