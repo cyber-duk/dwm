@@ -58,6 +58,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod1Mask
+#define MODOPT Mod4Mask
 #define TAGKEYS(CHAIN,KEY,TAG) \
 	{ MODKEY,                       CHAIN,    KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           CHAIN,    KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -134,6 +135,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             -1,         XK_f,      togglefullscr,  {0} },
 	{ MODKEY|ControlMask,           -1,         XK_space,  focusmaster,    {0} },
 	{ MODKEY,                       -1,         XK_s,      swapfocus,      {.i = -1 } },
+	{ MODKEY,                       -1,         XK_Left,   shiftviewc,     {.i = -1 } },       // switch to the prev tag containing a client  
+	{ MODKEY,                       -1,         XK_Right,  shiftviewc,     {.i = +1 } },       // switch to the next tag containing a client
+	{ MODKEY|ShiftMask,             -1,         XK_Left,   shifttagc,      {.i = -1 } },       // send focused client to the prev tag containing a client 
+	{ MODKEY|ShiftMask,             -1,         XK_Right,  shifttagc,      {.i = +1 } },       // send focused client to the next tag containing a client
+	{ MODKEY|MODOPT,                -1,         XK_Left,   shiftview,      {.i = -1 } },       // switch to the prev tag
+	{ MODKEY|MODOPT,                -1,         XK_Right,  shiftview,      {.i = +1 } },       // switch to the next tag
+	{ MODKEY|MODOPT|ShiftMask,      -1,         XK_Left,   shifttag,       {.i = -1 } },       // send client to the prev tag
+	{ MODKEY|MODOPT|ShiftMask,      -1,         XK_Right,  shifttag,       {.i = +1 } },       // send client to the next tag
 };
 
 /* button definitions */
