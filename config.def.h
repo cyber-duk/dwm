@@ -26,10 +26,10 @@ static char *colors[][4]      = {
 	[SchemeHid]  = { color0, color5, color6, color7 }, /* last two unused */
 };
 
-static int focusonclick            = 1;   /* 1 means focus on click */
-static unsigned int fborderpx      = 3;   /* border pixel for floating windows */
-static int floatbordercol          = 1;   /* 1 means different border color for floating windows */
-static int smartborder             = 1;   /* 0 means no border when monocle mode/one tiled window */
+static int focusonclick            = 0;   /* 1 means focus on click */
+static unsigned int fborderpx      = 1;   /* border pixel for floating windows */
+static int floatbordercol          = 0;   /* 1 means different border color for floating windows */
+static int smartborder             = 0;   /* 0 means no border when monocle mode/one tiled window */
 static unsigned int gappih         = 20;  /* horiz inner gap between windows */
 static unsigned int gappiv         = 10;  /* vert inner gap between windows */
 static unsigned int gappoh         = 10;  /* horiz outer gap between windows and screen edge */
@@ -102,6 +102,11 @@ ResourcePref resources[] = {
 		{ "focusonclick",	INTEGER, &focusonclick },
 		{ "floatbordercol",	INTEGER, &floatbordercol },
 		{ "smartborder",	INTEGER, &smartborder },
+		{ "gappih",			INTEGER, &gappih },
+		{ "gappiv",			INTEGER, &gappiv },
+		{ "gappoh",			INTEGER, &gappoh },
+		{ "gappov",			INTEGER, &gappov },
+		{ "smartgaps",		INTEGER, &smartgaps },
 };
 
 static Key keys[] = {
