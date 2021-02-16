@@ -26,10 +26,15 @@ static char *colors[][4]      = {
 	[SchemeHid]  = { color0, color5, color6, color7 }, /* last two unused */
 };
 
-static unsigned int focusonclick   = 1;   /* 1 means focus on click */
+static int focusonclick            = 1;   /* 1 means focus on click */
 static unsigned int fborderpx      = 3;   /* border pixel for floating windows */
-static unsigned int floatbordercol = 1;   /* different border color for floating windows */
-static unsigned int smartborder    = 1;   /* 0 means no border when monocle mode/one tiled window */
+static int floatbordercol          = 1;   /* 1 means different border color for floating windows */
+static int smartborder             = 1;   /* 0 means no border when monocle mode/one tiled window */
+static unsigned int gappih         = 20;  /* horiz inner gap between windows */
+static unsigned int gappiv         = 10;  /* vert inner gap between windows */
+static unsigned int gappoh         = 10;  /* horiz outer gap between windows and screen edge */
+static unsigned int gappov         = 30;  /* vert outer gap between windows and screen edge */
+static int smartgaps               = 0;   /* 1 means no outer gap when there is only one window */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -148,6 +153,9 @@ static Key keys[] = {
 	{ MODKEY|MODOPT|ShiftMask,      XK_Right,  shifttag,       {.i = +1 } },       // send client to the next tag
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
+	{ MODKEY|MODOPT,                XK_0,      togglegaps,     {0} },
 	{ MODOPT,                       XK_Left,   focusdir,       {.i = 0 } }, // left
 	{ MODOPT,                       XK_Right,  focusdir,       {.i = 1 } }, // right
 	{ MODOPT,                       XK_Up,     focusdir,       {.i = 2 } }, // up
