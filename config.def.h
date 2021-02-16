@@ -145,6 +145,8 @@ static Key keys[] = {
 	{ MODKEY|MODOPT,                -1,         XK_Right,  shiftview,      {.i = +1 } },       // switch to the next tag
 	{ MODKEY|MODOPT|ShiftMask,      -1,         XK_Left,   shifttag,       {.i = -1 } },       // send client to the prev tag
 	{ MODKEY|MODOPT|ShiftMask,      -1,         XK_Right,  shifttag,       {.i = +1 } },       // send client to the next tag
+	{ MODKEY|ShiftMask,             -1,         XK_j,      rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             -1,         XK_k,      rotatestack,    {.i = -1 } },
 };
 
 /* button definitions */
