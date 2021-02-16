@@ -252,6 +252,7 @@ static void runautostart(void);
 static void scan(void);
 static int sendevent(Window w, Atom proto, int m, long d0, long d1, long d2, long d3, long d4);
 static void sendmon(Client *c, Monitor *m);
+static void sendtag(const Arg *arg);
 static void setclientstate(Client *c, long state);
 static void setcurrentdesktop(void);
 static void setdesktopnames(void);
@@ -274,6 +275,7 @@ static void sigterm(int unused);
 static void spawn(const Arg *arg);
 static void swapfocus(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
+static void swaptag(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *);
@@ -1906,6 +1908,49 @@ sendmon(Client *c, Monitor *m)
 	arrange(NULL);
 	if (c->switchtag)
 		c->switchtag = 0;
+}
+
+
+void
+sendtag(const Arg *arg)
+{
+	unsigned int newtag = arg->ui & TAGMASK;
+	unsigned int curtag = selmon->tagset[selmon->seltags];
+
+	if (newtag == curtag || !curtag || (curtag & (curtag-1)))
+		return;
+
+	for (Client *c = selmon->clients; c != NULL; c = c->next) {
+		if(c->tags & curtag)
+			c->tags = newtag;
+
+		if(!c->tags) c->tags = newtag;
+	}
+
+	focus(NULL);
+	arrange(selmon);
+}
+
+void
+swaptag(const Arg *arg)
+{
+	unsigned int newtag = arg->ui & TAGMASK;
+	unsigned int curtag = selmon->tagset[selmon->seltags];
+
+	if (newtag == curtag || !curtag || (curtag & (curtag-1)))
+		return;
+
+	for (Client *c = selmon->clients; c != NULL; c = c->next) {
+		if((c->tags & newtag) || (c->tags & curtag))
+			c->tags ^= curtag ^ newtag;
+
+		if(!c->tags) c->tags = newtag;
+	}
+
+	selmon->tagset[selmon->seltags] = curtag;
+
+	focus(NULL);
+	arrange(selmon);
 }
 
 void
