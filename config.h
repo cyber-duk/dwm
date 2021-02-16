@@ -21,9 +21,9 @@ static char color7[]       = "#c6c8d1";
 
 static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
-	[SchemeNorm] = { color7, color0, color1, color3 },
-	[SchemeSel]  = { color0, color7, color4, color5 },
-	[SchemeHid]  = { color0, color2, color6, color7 }, /* last two unused */
+	[SchemeNorm] = { color7, color0, color4, color5 },
+	[SchemeSel]  = { color0, color7, color1, color3 },
+	[SchemeHid]  = { color2, color0, color6, color7 }, /* last two unused */
 };
 
 static int focusonclick            = 1;   /* 1 means focus on click */
@@ -81,7 +81,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char *termcmd[]    = { "st", NULL };
-static char *dmenucmd[]   = { "dmenu_run", "-i", "-n", NULL };
+static char *dmenucmd[]   = { "dmenu_run", "-i", "-n", "-p", "CMD ", NULL };
 static char *fmcmd[]      = { "st", "-c", "nnn", "-n", "nnn", "-e", "nnn", "-ea", NULL };
 static char *browsercmd[] = { "firefox", NULL };
 static char *mailcmd[]    = { "st", "-c", "neomutt", "-n", "neomutt", "-e", "neomutt", NULL };
