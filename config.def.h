@@ -102,6 +102,11 @@ ResourcePref resources[] = {
 		{ "focusonclick",	INTEGER, &focusonclick },
 		{ "floatbordercol",	INTEGER, &floatbordercol },
 		{ "smartborder",	INTEGER, &smartborder },
+		{ "gappih",			INTEGER, &gappih },
+		{ "gappiv",			INTEGER, &gappiv },
+		{ "gappoh",			INTEGER, &gappoh },
+		{ "gappov",			INTEGER, &gappov },
+		{ "smartgaps",		INTEGER, &smartgaps },
 };
 
 static Key keys[] = {
