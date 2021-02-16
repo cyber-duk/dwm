@@ -1,31 +1,34 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static unsigned int systrayspacing = 2;   /* systray spacing */
+static int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static int showsystray        = 1;     /* 0 means no systray */
+static int showbar            = 1;        /* 0 means no bar */
+static int topbar             = 1;        /* 0 means bottom bar */
+static char *fonts[]          = { "monospace:size=10" };
+static char color0[]       = "#161821";
+static char color1[]       = "#e27878";
+static char color2[]       = "#b4be62";
+static char color3[]       = "#e2a478";
+static char color4[]       = "#84a0c6";
+static char color5[]       = "#a093c7";
+static char color6[]       = "#89b8c2";
+static char color7[]       = "#c6c8d1";
 
-static const char *colors[][4]      = {
-	/*               fg         bg         border     floatborder*/
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2, col_cyan  },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan,  col_gray2 },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan,  col_gray1 },
+static char *colors[][4]      = {
+	/*               fg      bg      border  float  */
+	[SchemeNorm] = { color7, color0, color1, color3 },
+	[SchemeSel]  = { color0, color7, color2, color4 },
+	[SchemeHid]  = { color0, color5, color6, color7 }, /* last two unused */
 };
 
-static const unsigned int focusonclick   = 1;   /* 1 means focus on click */
-static const unsigned int fborderpx      = 3;   /* border pixel for floating windows */
-static const unsigned int floatbordercol = 1;   /* different border color for floating windows */
+static unsigned int focusonclick   = 1;   /* 1 means focus on click */
+static unsigned int fborderpx      = 3;   /* border pixel for floating windows */
+static unsigned int floatbordercol = 1;   /* different border color for floating windows */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -41,9 +44,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -64,8 +67,32 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[]  = { "st", NULL };
-static const char *dmenucmd[]  = { "dmenu_run", NULL };
+static char *termcmd[]  = { "st", NULL };
+static char *dmenucmd[]  = { "dmenu_run", NULL };
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "color0",			STRING,  &color0 },
+		{ "color1",			STRING,  &color1 },
+		{ "color2",			STRING,  &color2 },
+		{ "color3",			STRING,  &color3 },
+		{ "color4",			STRING,  &color4 },
+		{ "color5",			STRING,  &color5 },
+		{ "color6",			STRING,  &color6 },
+		{ "color7",			STRING,  &color7 },
+		{ "borderpx",		INTEGER, &borderpx },
+		{ "snap",			INTEGER, &snap },
+		{ "showbar",		INTEGER, &showbar },
+		{ "topbar",			INTEGER, &topbar },
+		{ "nmaster",		INTEGER, &nmaster },
+		{ "resizehints",	INTEGER, &resizehints },
+		{ "mfact",			FLOAT,   &mfact },
+		{ "fborderpx",		INTEGER, &fborderpx },
+		{ "focusonclick",	INTEGER, &focusonclick },
+		{ "floatbordercol",	INTEGER, &floatbordercol },
+};
 
 static Key keys[] = {
 	/* modifier                     chain key   key        function        argument */
