@@ -164,8 +164,8 @@ typedef struct {
 	const char *instance;
 	const char *title;
 	unsigned int tags;
-	int iscentered;
 	int switchtag;
+	int iscentered;
 	int isfloating;
 	int monitor;
 } Rule;
