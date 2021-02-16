@@ -2798,8 +2798,11 @@ view(const Arg *arg)
 
 	if (selmon->showbar != selmon->pertag->showbars[selmon->pertag->curtag])
 		togglebar(NULL);
+	
+	Client *unmodified = selmon->pertag->prevclient[selmon->pertag->curtag];
 
 	focus(NULL);
+	selmon->pertag->prevclient[selmon->pertag->curtag] = unmodified;
 	arrange(selmon);
 	updatecurrentdesktop();
 }
