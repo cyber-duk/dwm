@@ -1305,6 +1305,8 @@ killclient(const Arg *arg)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
+	
+	selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
 }
 
 void
@@ -2179,13 +2181,21 @@ swapfocus(const Arg *arg)
 	if (!selmon->sel)
 		return;
 	if (selmon->pertag->prevclient[selmon->pertag->curtag] != NULL
-			&& ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])) {
-		if (selmon->pertag->prevclient[selmon->pertag->curtag] == selmon->sel) {
-			selmon->pertag->prevclient[selmon->pertag->curtag] = selmon->sel->next;
-		}
+			&& ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])
+			&& !HIDDEN(selmon->pertag->prevclient[selmon->pertag->curtag])) {
 		focus(selmon->pertag->prevclient[selmon->pertag->curtag]);
 		restack(selmon->pertag->prevclient[selmon->pertag->curtag]->mon);
 	}
+	else {
+		Client *c = NULL;
+		for (c = selmon->sel->next; c && !ISVISIBLE(c) && !HIDDEN(c); c = c->next);
+		if (!c)
+			for (c = selmon->clients; c && !ISVISIBLE(c) && !HIDDEN(c); c = c->next);
+		if (c) {
+			focus(c);
+			restack(selmon);
+		}
+}
 }
 
 void
@@ -2935,7 +2945,10 @@ hidewin(Client *c)
 	XSelectInput(dpy, w, ca.your_event_mask);
 	XUngrabServer(dpy);
 
-	focus(c->snext);
+	if (c == selmon->sel) {
+		focus(c->snext);
+		selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
+	}
 	arrange(c->mon);
 }
 
@@ -2991,6 +3004,7 @@ zoomtitlewin(const Arg *arg)
 	pop(c);
 }
 
+
 void
 killtitlewin(const Arg *arg)
 {
@@ -3006,8 +3020,10 @@ killtitlewin(const Arg *arg)
 	XSync(dpy, False);
 	XSetErrorHandler(xerror);
 	XUngrabServer(dpy);
-}
 
+	if (c == selmon->sel || c == selmon->pertag->prevclient[selmon->pertag->curtag])
+		selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
+}
 
 int
 main(int argc, char *argv[])
