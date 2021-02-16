@@ -69,6 +69,8 @@ static const char *dmenucmd[]  = { "dmenu_run", NULL };
 
 static Key keys[] = {
 	/* modifier                     chain key   key        function        argument */
+	{ MODKEY,                       XK_a,       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_a,       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       -1,         XK_b,      togglebar,      {0} },
 	{ MODKEY,                       -1,         XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       -1,         XK_k,      focusstack,     {.i = -1 } },
@@ -101,8 +103,7 @@ static Key keys[] = {
 	TAGKEYS(                        -1,         XK_9,                      8)
 	{ MODKEY|ShiftMask,             -1,         XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, -1,         XK_q,      quit,           {1} },
-	{ MODKEY,                       XK_a,       XK_t,      spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_a,       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             -1,         XK_f,      togglefullscr,  {0} },
 };
 
 /* button definitions */
