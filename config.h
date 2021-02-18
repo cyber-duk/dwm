@@ -23,7 +23,11 @@ static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
 	[SchemeNorm] = { color7, color0, color4, color5 },
 	[SchemeSel]  = { color0, color7, color1, color3 },
-	[SchemeHid]  = { color2, color0, color6, color7 }, /* last two unused */
+	[SchemeHid]  = { color2, color0 }, /* title bar hidden titles */
+	[SchemeLti]  = { color0, color2 }, /* layout indicator */
+	[SchemeSts]  = { color0, color2 }, /* status bar */
+	[SchemeTgN]  = { color7, color0 }, /* tag normal */
+	[SchemeTgS]  = { color0, color2 }, /* tag selected */
 };
 
 static int focusonclick            = 1;   /* 1 means focus on click */
@@ -46,7 +50,7 @@ static const Rule rules[] = {
 	 */
 	/* class             instance    title   tags mask  switchtag  iscentered  isfloating   monitor */
 	{ "Gimp",            NULL,       NULL,   0,         1,         0,          1,           -1 },
-	{ "Firefox",         NULL,       NULL,   1 << 8,    1,         0,          0,           -1 },
+	{ "Firefox",         NULL,       NULL,   1 << 1,    1,         0,          0,           -1 },
 	{ "TelegramDesktop", NULL,       NULL,   0,         1,         1,          1,           -1 },
 	{ "Libreoffice",     NULL,       NULL,   1 << 3,    1,         0,          0,           -1 },
 	{ "mpv",             NULL,       NULL,   0,         0,         0,          0,           -1 },

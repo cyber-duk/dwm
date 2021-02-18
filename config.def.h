@@ -23,7 +23,11 @@ static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
 	[SchemeNorm] = { color7, color0, color1, color3 },
 	[SchemeSel]  = { color0, color7, color4, color5 },
-	[SchemeHid]  = { color0, color2, color6, color7 }, /* last two unused */
+	[SchemeHid]  = { color2, color0 }, /* title bar hidden titles */
+	[SchemeLti]  = { color0, color2 }, /* layout indicator */
+	[SchemeSts]  = { color0, color2 }, /* status bar */
+	[SchemeTgN]  = { color7, color0 }, /* tag normal */
+	[SchemeTgS]  = { color0, color2 }, /* tag selected */
 };
 
 static int focusonclick            = 1;   /* 1 means focus on click */
