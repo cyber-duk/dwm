@@ -21,13 +21,13 @@ static char color7[]       = "#c6c8d1";
 
 static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
-	[SchemeNorm] = { color7, color0, color4, color5 },
-	[SchemeSel]  = { color0, color7, color1, color3 },
-	[SchemeHid]  = { color2, color0 }, /* title bar hidden titles */
-	[SchemeLti]  = { color0, color2 }, /* layout indicator */
-	[SchemeSts]  = { color0, color2 }, /* status bar */
+	[SchemeNorm] = { color7, color0, color0, color5 },
+	[SchemeSel]  = { color0, color7, color2, color3 },
+	[SchemeHid]  = { color4, color0 }, /* title bar hidden titles */
+	[SchemeLti]  = { color0, color4 }, /* layout indicator */
+	[SchemeSts]  = { color0, color4 }, /* status bar */
 	[SchemeTgN]  = { color7, color0 }, /* tag normal */
-	[SchemeTgS]  = { color0, color2 }, /* tag selected */
+	[SchemeTgS]  = { color0, color4 }, /* tag selected */
 };
 
 static int focusonclick            = 1;   /* 1 means focus on click */
@@ -73,12 +73,12 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define MODOPT Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
-	{ MODKEY|MODOPT,                KEY,      sendtag,        {.ui = 1 << TAG} }, \
-	{ MODKEY|MODOPT|ShiftMask,      KEY,      swaptag,        {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
+{ MODKEY|MODOPT,                KEY,      sendtag,        {.ui = 1 << TAG} }, \
+{ MODKEY|MODOPT|ShiftMask,      KEY,      swaptag,        {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -86,7 +86,7 @@ static const Layout layouts[] = {
 /* commands */
 static char *termcmd[]    = { "st", NULL };
 static char *dmenucmd[]   = { "dmenu_run", "-i", "-n", "-p", "CMD ", NULL };
-static char *fmcmd[]      = { "st", "-c", "nnn", "-n", "nnn", "-e", "nnn", "-ea", NULL };
+static char *fmcmd[]      = { "dfm", NULL };
 static char *browsercmd[] = { "firefox", NULL };
 static char *mailcmd[]    = { "st", "-c", "neomutt", "-n", "neomutt", "-e", "neomutt", NULL };
 
@@ -94,30 +94,30 @@ static char *mailcmd[]    = { "st", "-c", "neomutt", "-n", "neomutt", "-e", "neo
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "color0",			STRING,  &color0 },
-		{ "color1",			STRING,  &color1 },
-		{ "color2",			STRING,  &color2 },
-		{ "color3",			STRING,  &color3 },
-		{ "color4",			STRING,  &color4 },
-		{ "color5",			STRING,  &color5 },
-		{ "color6",			STRING,  &color6 },
-		{ "color7",			STRING,  &color7 },
-		{ "borderpx",		INTEGER, &borderpx },
-		{ "snap",			INTEGER, &snap },
-		{ "showbar",		INTEGER, &showbar },
-		{ "topbar",			INTEGER, &topbar },
-		{ "nmaster",		INTEGER, &nmaster },
-		{ "resizehints",	INTEGER, &resizehints },
-		{ "mfact",			FLOAT,   &mfact },
-		{ "fborderpx",		INTEGER, &fborderpx },
-		{ "focusonclick",	INTEGER, &focusonclick },
-		{ "floatbordercol",	INTEGER, &floatbordercol },
-		{ "smartborder",	INTEGER, &smartborder },
-		{ "gappih",			INTEGER, &gappih },
-		{ "gappiv",			INTEGER, &gappiv },
-		{ "gappoh",			INTEGER, &gappoh },
-		{ "gappov",			INTEGER, &gappov },
-		{ "smartgaps",		INTEGER, &smartgaps },
+	{ "color0",			STRING,  &color0 },
+	{ "color1",			STRING,  &color1 },
+	{ "color2",			STRING,  &color2 },
+	{ "color3",			STRING,  &color3 },
+	{ "color4",			STRING,  &color4 },
+	{ "color5",			STRING,  &color5 },
+	{ "color6",			STRING,  &color6 },
+	{ "color7",			STRING,  &color7 },
+	{ "borderpx",		INTEGER, &borderpx },
+	{ "snap",			INTEGER, &snap },
+	{ "showbar",		INTEGER, &showbar },
+	{ "topbar",			INTEGER, &topbar },
+	{ "nmaster",		INTEGER, &nmaster },
+	{ "resizehints",	INTEGER, &resizehints },
+	{ "mfact",			FLOAT,   &mfact },
+	{ "fborderpx",		INTEGER, &fborderpx },
+	{ "focusonclick",	INTEGER, &focusonclick },
+	{ "floatbordercol",	INTEGER, &floatbordercol },
+	{ "smartborder",	INTEGER, &smartborder },
+	{ "gappih",			INTEGER, &gappih },
+	{ "gappiv",			INTEGER, &gappiv },
+	{ "gappoh",			INTEGER, &gappoh },
+	{ "gappov",			INTEGER, &gappov },
+	{ "smartgaps",		INTEGER, &smartgaps },
 };
 
 /* To use XF86 keys */
@@ -126,9 +126,9 @@ static Key keys[] = {
 	/* modifier						key			function		argument */
 	{ MODKEY,                       XK_space,	spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,	spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_f,       spawn,          {.v = fmcmd } },
-    { MODKEY,                       XK_b,       spawn,          {.v = browsercmd } },
-    { MODKEY,                       XK_m,       spawn,          {.v = mailcmd } },
+	{ MODKEY,                       XK_f,       spawn,          {.v = fmcmd } },
+	{ MODKEY,                       XK_b,       spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_m,       spawn,          {.v = mailcmd } },
 
 	{ MODKEY,						XK_q,		killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_q,		quit,           {1} },
@@ -144,13 +144,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,		togglefullscr,  {0} },
 	{ MODKEY|ShiftMask,             XK_g,		togglegaps,     {0} },
 
-	{ MODKEY|ShiftMask,             XK_i,		incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_d,		incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_comma,	incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_period,	incnmaster,     {.i = -1 } },
 
-	{ MODOPT,                       XK_a,		focusdir,       {.i = 0 } }, // left
-	{ MODOPT,                       XK_d,		focusdir,       {.i = 1 } }, // right
-	{ MODOPT,                       XK_w,		focusdir,       {.i = 2 } }, // up
-	{ MODOPT,                       XK_s,		focusdir,       {.i = 3 } }, // down
+	{ MODKEY,                       XK_a,		focusdir,       {.i = 0 } }, // left
+	{ MODKEY,                       XK_d,		focusdir,       {.i = 1 } }, // right
+	{ MODKEY,                       XK_w,		focusdir,       {.i = 2 } }, // up
+	{ MODKEY,                       XK_s,		focusdir,       {.i = 3 } }, // down
 
 	{ MODKEY,                       XK_j,		focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,		focusstack,     {.i = -1 } },
@@ -169,9 +169,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_F3,      setlayout,      {.v = &layouts[2]} },
 
-	{ MODKEY,                       XK_Left,	shiftviewc,     {.i = -1 } },       // switch to the prev tag containing a client  
+	{ MODKEY,                       XK_Left,	shiftviewc,     {.i = -1 } },       // switch to the prev tag containing a client
 	{ MODKEY,                       XK_Right,	shiftviewc,     {.i = +1 } },       // switch to the next tag containing a client
-	{ MODKEY|ShiftMask,             XK_Left,	shifttagc,      {.i = -1 } },       // send focused client to the prev tag containing a client 
+	{ MODKEY|ShiftMask,             XK_Left,	shifttagc,      {.i = -1 } },       // send focused client to the prev tag containing a client
 	{ MODKEY|ShiftMask,             XK_Right,	shifttagc,      {.i = +1 } },       // send focused client to the next tag containing a client
 	{ MODKEY|MODOPT,                XK_Left,	shiftview,      {.i = -1 } },       // switch to the prev tag
 	{ MODKEY|MODOPT,                XK_Right,	shiftview,      {.i = +1 } },       // switch to the next tag
@@ -195,17 +195,17 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 
-    // XF86Keys
-    { 0,    XF86XK_AudioMute,               spawn,      SHCMD("amixer -q sset Master toggle") },
-    { 0,    XF86XK_AudioRaiseVolume,        spawn,      SHCMD("amixer -q sset Master 5%+") },
-    { 0,    XF86XK_AudioLowerVolume,        spawn,      SHCMD("amixer -q sset Master 5%-") },
-    { 0,    XF86XK_AudioPrev,               spawn,      SHCMD("mpc -q prev") },
-    { 0,    XF86XK_AudioNext,               spawn,      SHCMD("mpc -q next") },
-    { 0,    XF86XK_AudioPlay,               spawn,      SHCMD("mpc -q toggle") },
-    { 0,    XF86XK_AudioMicMute,            spawn,      SHCMD("amixer -q sset Capture toggle") },
-    { 0,    XF86XK_MonBrightnessUp,         spawn,      SHCMD("light -A 5") },
-    { 0,    XF86XK_MonBrightnessDown,       spawn,      SHCMD("light -U 5") },
-    { 0,    XK_Print,                       spawn,      SHCMD("scrot -p -q 100 ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png") },
+	// XF86Keys
+	{ 0,    XF86XK_AudioMute,               spawn,      SHCMD("amixer -q sset Master toggle") },
+	{ 0,    XF86XK_AudioRaiseVolume,        spawn,      SHCMD("amixer -q sset Master 5%+") },
+	{ 0,    XF86XK_AudioLowerVolume,        spawn,      SHCMD("amixer -q sset Master 5%-") },
+	{ 0,    XF86XK_AudioPrev,               spawn,      SHCMD("mpc -q prev") },
+	{ 0,    XF86XK_AudioNext,               spawn,      SHCMD("mpc -q next") },
+	{ 0,    XF86XK_AudioPlay,               spawn,      SHCMD("mpc -q toggle") },
+	{ 0,    XF86XK_AudioMicMute,            spawn,      SHCMD("amixer -q sset Capture toggle") },
+	{ 0,    XF86XK_MonBrightnessUp,         spawn,      SHCMD("light -A 5") },
+	{ 0,    XF86XK_MonBrightnessDown,       spawn,      SHCMD("light -U 5") },
+	{ 0,    XK_Print,                       spawn,      SHCMD("scrot -p -q 100 ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png") },
 };
 
 /* button definitions */
