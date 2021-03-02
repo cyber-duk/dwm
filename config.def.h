@@ -16,6 +16,14 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	
+	/* layout symbol foreground and background */
+	[SchemeLti]  = { col_gray4, col_cyan },
+	/* status elements foreground and background */
+	[SchemeSts]  = { col_gray4, col_cyan  },
+	/* tags foreground and background */
+	[SchemeTagNorm] = { col_gray3, col_gray1 }, // active tag colors
+	[SchemeTagSel]  = { col_gray4, col_cyan  }, // normal tag colors
 };
 
 /* tagging */
