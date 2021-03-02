@@ -21,13 +21,13 @@ static char color7[]       = "#c6c8d1";
 
 static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
-	[SchemeNorm] = { color7, color0, color1, color3 },
-	[SchemeSel]  = { color0, color7, color4, color5 },
-	[SchemeHid]  = { color2, color0 }, /* title bar hidden titles */
-	[SchemeLti]  = { color0, color2 }, /* layout indicator */
-	[SchemeSts]  = { color0, color2 }, /* status bar */
+	[SchemeNorm] = { color7, color0, color0, color3 },
+	[SchemeSel]  = { color0, color7, color2, color5 },
+	[SchemeHid]  = { color4, color0 }, /* title bar hidden titles */
+	[SchemeLti]  = { color0, color4 }, /* layout indicator */
+	[SchemeSts]  = { color0, color4 }, /* status bar */
 	[SchemeTgN]  = { color7, color0 }, /* tag normal */
-	[SchemeTgS]  = { color0, color2 }, /* tag selected */
+	[SchemeTgS]  = { color0, color4 }, /* tag selected */
 };
 
 static int focusonclick            = 1;   /* 1 means focus on click */
@@ -50,7 +50,7 @@ static const Rule rules[] = {
 	 */
 	/* class             instance    title   tags mask  switchtag  iscentered  isfloating   monitor */
 	{ "Gimp",            NULL,       NULL,   0,         1,         0,          1,           -1 },
-	{ "Firefox",         NULL,       NULL,   1 << 8,    1,         0,          0,           -1 },
+	{ "Firefox",         NULL,       NULL,   1 << 1,    1,         0,          0,           -1 },
 	{ "TelegramDesktop", NULL,       NULL,   0,         1,         1,          1,           -1 },
 	{ "Libreoffice",     NULL,       NULL,   1 << 3,    1,         0,          0,           -1 },
 	{ "mpv",             NULL,       NULL,   0,         0,         0,          0,           -1 },
@@ -85,8 +85,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char *termcmd[]    = { "st", NULL };
-static char *dmenucmd[]   = { "dmenu_run", "-i", "-n", NULL };
-static char *fmcmd[]      = { "st", "-c", "nnn", "-n", "nnn", "-e", "nnn", "-ea", NULL };
+static char *dmenucmd[]   = { "dmenu_run", "-i", "-n", "-p", "CMD ", NULL };
+static char *fmcmd[]      = { "dfm", NULL };
 static char *browsercmd[] = { "firefox", NULL };
 static char *mailcmd[]    = { "st", "-c", "neomutt", "-n", "neomutt", "-e", "neomutt", NULL };
 
