@@ -21,8 +21,8 @@ static char color7[]       = "#c6c8d1";
 
 static char *colors[][4]      = {
 	/*               fg      bg      border  float  */
-	[SchemeNorm] = { color7, color0, color0, color3 },
-	[SchemeSel]  = { color0, color7, color2, color5 },
+	[SchemeNorm] = { color7, color0, color0, color5 },
+	[SchemeSel]  = { color0, color7, color2, color3 },
 	[SchemeHid]  = { color4, color0 }, /* title bar hidden titles */
 	[SchemeLti]  = { color0, color4 }, /* layout indicator */
 	[SchemeSts]  = { color0, color4 }, /* status bar */
