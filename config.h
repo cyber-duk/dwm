@@ -94,106 +94,106 @@ static char *mailcmd[]    = { "st", "-c", "neomutt", "-n", "neomutt", "-e", "neo
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-	{ "color0",			STRING,  &color0 },
-	{ "color1",			STRING,  &color1 },
-	{ "color2",			STRING,  &color2 },
-	{ "color3",			STRING,  &color3 },
-	{ "color4",			STRING,  &color4 },
-	{ "color5",			STRING,  &color5 },
-	{ "color6",			STRING,  &color6 },
-	{ "color7",			STRING,  &color7 },
-	{ "borderpx",		INTEGER, &borderpx },
-	{ "snap",			INTEGER, &snap },
-	{ "showbar",		INTEGER, &showbar },
-	{ "topbar",			INTEGER, &topbar },
-	{ "nmaster",		INTEGER, &nmaster },
-	{ "resizehints",	INTEGER, &resizehints },
-	{ "mfact",			FLOAT,   &mfact },
-	{ "fborderpx",		INTEGER, &fborderpx },
-	{ "focusonclick",	INTEGER, &focusonclick },
-	{ "floatbordercol",	INTEGER, &floatbordercol },
-	{ "smartborder",	INTEGER, &smartborder },
-	{ "gappih",			INTEGER, &gappih },
-	{ "gappiv",			INTEGER, &gappiv },
-	{ "gappoh",			INTEGER, &gappoh },
-	{ "gappov",			INTEGER, &gappov },
-	{ "smartgaps",		INTEGER, &smartgaps },
+	{ "dwm.color0",		STRING,  &color0 },
+	{ "dwm.color1",		STRING,  &color1 },
+	{ "dwm.color2",		STRING,  &color2 },
+	{ "dwm.color3",		STRING,  &color3 },
+	{ "dwm.color4",		STRING,  &color4 },
+	{ "dwm.color5",		STRING,  &color5 },
+	{ "dwm.color6",		STRING,  &color6 },
+	{ "dwm.color7",		STRING,  &color7 },
+	{ "dwm.borderpx",	INTEGER, &borderpx },
+	{ "dwm.snap",		INTEGER, &snap },
+	{ "dwm.showbar",	INTEGER, &showbar },
+	{ "dwm.topbar",		INTEGER, &topbar },
+	{ "dwm.nmaster",	INTEGER, &nmaster },
+	{ "dwm.resizehints",	INTEGER, &resizehints },
+	{ "dwm.mfact",		FLOAT,   &mfact },
+	{ "dwm.fborderpx",	INTEGER, &fborderpx },
+	{ "dwm.focusonclick",	INTEGER, &focusonclick },
+	{ "dwm.floatbordercol",	INTEGER, &floatbordercol },
+	{ "dwm.smartborder",	INTEGER, &smartborder },
+	{ "dwm.gappih",		INTEGER, &gappih },
+	{ "dwm.gappiv",		INTEGER, &gappiv },
+	{ "dwm.gappoh",		INTEGER, &gappoh },
+	{ "dwm.gappov",		INTEGER, &gappov },
+	{ "dwm.smartgaps",	INTEGER, &smartgaps },
 };
 
 /* To use XF86 keys */
 #include <X11/XF86keysym.h>
 static Key keys[] = {
-	/* modifier						chain	key			function		argument */
-	{ MODKEY,                       -1,		XK_space,	spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       -1,		XK_Return,	spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_a,	XK_f,       spawn,          {.v = fmcmd } },
-	{ MODKEY,                       XK_a,	XK_b,       spawn,          {.v = browsercmd } },
-	{ MODKEY,                       XK_a,	XK_m,       spawn,          {.v = mailcmd } },
+	/* modifier			chain	key		function		argument */
+	{ MODKEY,                       -1,	XK_space,	spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       -1,	XK_Return,	spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_a,	XK_f,		spawn,          {.v = fmcmd } },
+	{ MODKEY,                       XK_a,	XK_b,		spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_a,	XK_m,		spawn,          {.v = mailcmd } },
 
-	{ MODKEY,						-1,		XK_q,		killclient,     {0} },
-	{ MODKEY|ShiftMask,             -1,		XK_q,		quit,           {1} },
-	{ MODKEY|ControlMask|ShiftMask, -1,		XK_q,		quit,           {0} },
+	{ MODKEY,			-1,	XK_q,		killclient,     {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_q,		quit,           {1} },
+	{ MODKEY|ControlMask|ShiftMask, -1,	XK_q,		quit,           {0} },
 
-	{ MODKEY,						-1,		XK_z,		focusmaster,    {0} },
-	{ MODKEY|ShiftMask,             -1,		XK_z,		zoom,           {0} },
+	{ MODKEY,			-1,	XK_z,		focusmaster,    {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_z,		zoom,           {0} },
 
-	{ MODKEY,                       -1,		XK_Tab,		swapfocus,      {.i = -1 } },
-	{ MODKEY|ShiftMask,             -1,		XK_Tab,		view,           {0} },
+	{ MODKEY,                       -1,	XK_Tab,		swapfocus,      {.i = -1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_Tab,		view,           {0} },
 
-	{ MODKEY|ShiftMask,             -1,		XK_b,		togglebar,      {0} },
-	{ MODKEY|ShiftMask,             -1,		XK_f,		togglefullscr,  {0} },
-	{ MODKEY|ShiftMask,             -1,		XK_g,		togglegaps,     {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_b,		togglebar,      {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_f,		togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_g,		togglegaps,     {0} },
 
-	{ MODKEY|ShiftMask,             -1,		XK_i,		incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             -1,		XK_d,		incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_i,		incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_d,		incnmaster,     {.i = -1 } },
 
 	{ MODOPT,                       XK_d,	XK_Left,	focusdir,       {.i = 0 } }, // left
 	{ MODOPT,                       XK_d,	XK_Right,	focusdir,       {.i = 1 } }, // right
 	{ MODOPT,                       XK_d,	XK_Up,		focusdir,       {.i = 2 } }, // up
 	{ MODOPT,                       XK_d,	XK_Down,	focusdir,       {.i = 3 } }, // down
 
-	{ MODKEY,                       -1,		XK_j,		focusstack,     {.i = +1 } },
-	{ MODKEY,                       -1,		XK_k,		focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             -1,		XK_j,		rotatestack,    {.i = +1 } },
-	{ MODKEY|ShiftMask,             -1,		XK_k,		rotatestack,    {.i = -1 } },
+	{ MODKEY,                       -1,	XK_j,		focusstack,     {.i = +1 } },
+	{ MODKEY,                       -1,	XK_k,		focusstack,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_j,		rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_k,		rotatestack,    {.i = -1 } },
 
-	{ MODKEY,                       -1,		XK_h,		setmfact,       {.f = -0.05} },
-	{ MODKEY,                       -1,		XK_l,		setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             -1,		XK_h,		setcfact,       {.f = +0.25} },
-	{ MODKEY|ShiftMask,             -1,		XK_l,		setcfact,       {.f = -0.25} },
+	{ MODKEY,                       -1,	XK_h,		setmfact,       {.f = -0.05} },
+	{ MODKEY,                       -1,	XK_l,		setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             -1,	XK_h,		setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             -1,	XK_l,		setcfact,       {.f = -0.25} },
 
-	{ MODKEY,                       -1,		XK_t,		togglefloating, {0} },
-	{ MODKEY|ShiftMask,             -1,		XK_t,		setlayout,      {0} },
+	{ MODKEY,                       -1,	XK_t,		togglefloating, {0} },
+	{ MODKEY|ShiftMask,             -1,	XK_t,		setlayout,      {0} },
 
-	{ MODKEY,                       XK_l,	XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,						XK_l,	XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,			XK_l,	XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,			XK_l,	XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_l,	XK_m,      setlayout,      {.v = &layouts[2]} },
 
-	{ MODKEY,                       -1,		XK_Left,	shiftviewc,     {.i = -1 } },       // switch to the prev tag containing a client
-	{ MODKEY,                       -1,		XK_Right,	shiftviewc,     {.i = +1 } },       // switch to the next tag containing a client
-	{ MODKEY|ShiftMask,             -1,		XK_Left,	shifttagc,      {.i = -1 } },       // send focused client to the prev tag containing a client
-	{ MODKEY|ShiftMask,             -1,		XK_Right,	shifttagc,      {.i = +1 } },       // send focused client to the next tag containing a client
-	{ MODKEY|MODOPT,                -1,		XK_Left,	shiftview,      {.i = -1 } },       // switch to the prev tag
-	{ MODKEY|MODOPT,                -1,		XK_Right,	shiftview,      {.i = +1 } },       // switch to the next tag
-	{ MODKEY|MODOPT|ShiftMask,      -1,		XK_Left,	shifttag,       {.i = -1 } },       // send client to the prev tag
-	{ MODKEY|MODOPT|ShiftMask,      -1,		XK_Right,	shifttag,       {.i = +1 } },       // send client to the next tag
+	{ MODKEY,                       -1,	XK_Left,	shiftviewc,     {.i = -1 } },       // switch to the prev tag containing a client
+	{ MODKEY,                       -1,	XK_Right,	shiftviewc,     {.i = +1 } },       // switch to the next tag containing a client
+	{ MODKEY|ShiftMask,             -1,	XK_Left,	shifttagc,      {.i = -1 } },       // send focused client to the prev tag containing a client
+	{ MODKEY|ShiftMask,             -1,	XK_Right,	shifttagc,      {.i = +1 } },       // send focused client to the next tag containing a client
+	{ MODKEY|MODOPT,                -1,	XK_Left,	shiftview,      {.i = -1 } },       // switch to the prev tag
+	{ MODKEY|MODOPT,                -1,	XK_Right,	shiftview,      {.i = +1 } },       // switch to the next tag
+	{ MODKEY|MODOPT|ShiftMask,      -1,	XK_Left,	shifttag,       {.i = -1 } },       // send client to the prev tag
+	{ MODKEY|MODOPT|ShiftMask,      -1,	XK_Right,	shifttag,       {.i = +1 } },       // send client to the next tag
 
-	{ MODKEY,                       -1,		XK_0,		view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             -1,		XK_0,		tag,            {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             -1,		XK_comma,	focusmon,       {.i = -1 } },
-	{ MODKEY|ShiftMask,             -1,		XK_period,	focusmon,       {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask, -1,		XK_comma,	tagmon,         {.i = -1 } },
-	{ MODKEY|ControlMask|ShiftMask, -1,		XK_period,	tagmon,         {.i = +1 } },
+	{ MODKEY,                       -1,	XK_0,		view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             -1,	XK_0,		tag,            {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             -1,	XK_comma,	focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             -1,	XK_period,	focusmon,       {.i = +1 } },
+	{ MODKEY|ControlMask|ShiftMask, -1,	XK_comma,	tagmon,         {.i = -1 } },
+	{ MODKEY|ControlMask|ShiftMask, -1,	XK_period,	tagmon,         {.i = +1 } },
 
-	TAGKEYS(                        -1,		XK_1,                      0)
-	TAGKEYS(                        -1,		XK_2,                      1)
-	TAGKEYS(                        -1,		XK_3,                      2)
-	TAGKEYS(                        -1,		XK_4,                      3)
-	TAGKEYS(                        -1,		XK_5,                      4)
-	TAGKEYS(                        -1,		XK_6,                      5)
-	TAGKEYS(                        -1,		XK_7,                      6)
-	TAGKEYS(                        -1,		XK_8,                      7)
-	TAGKEYS(                        -1,		XK_9,                      8)
+	TAGKEYS(                        -1,	XK_1,                      0)
+	TAGKEYS(                        -1,	XK_2,                      1)
+	TAGKEYS(                        -1,	XK_3,                      2)
+	TAGKEYS(                        -1,	XK_4,                      3)
+	TAGKEYS(                        -1,	XK_5,                      4)
+	TAGKEYS(                        -1,	XK_6,                      5)
+	TAGKEYS(                        -1,	XK_7,                      6)
+	TAGKEYS(                        -1,	XK_8,                      7)
+	TAGKEYS(                        -1,	XK_9,                      8)
 
 	// XF86Keys
 	{ 0,    -1,		XF86XK_AudioMute,               spawn,      SHCMD("amixer -q sset Master toggle") },
